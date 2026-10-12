@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Docklab · 뉴스 속 무역 공부방</title>
+<meta name="description" content="세계 무역 뉴스를 고르고, 그래프를 직접 움직여 보고, 퀴즈를 풀며 무역 개념을 익히는 학습 웹사이트.">
+<meta property="og:title" content="뉴스 속 무역 공부방">
+<meta property="og:description" content="뉴스를 고르고, 만져보고, 맞혀보며 배우는 무역.">
+<meta property="og:type" content="website">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="images/favicon-64.png" type="image/png" id="favLink">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png" id="touchIcon">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#2F7D3B">
+<link rel="preload" href="fonts/NoonnuBasicGothic-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="logo" href="#top" aria-label="처음으로">
+      <img class="app-icon" src="images/app-icon-128.png" alt="" width="36" height="36">
+      <span class="logo-txt"><b data-site="brand">Docklab</b><small data-site="title">뉴스 속 무역 공부방</small></span>
+    </a>
+    <nav class="menu" aria-label="주요 메뉴">
+      <a href="#map">무역 맵</a>
+      <a href="#live">실시간 뉴스</a>
+      <a href="#news">학습실</a>
+      <a href="#record">내 기록</a>
+      <a href="#glossary">용어 사전</a>
+    </nav>
+    <button class="bgm-btn" id="bgmBtn" type="button" aria-pressed="false" aria-label="배경음악 켜기" title="배경음악 켜기">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+        <path d="M4 9.5h3.2L12 5.6v12.8l-4.8-3.9H4z" fill="currentColor" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+        <g class="waves" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M15.2 9.2a4 4 0 0 1 0 5.6"/><path d="M17.8 6.8a7.4 7.4 0 0 1 0 10.4"/></g>
+        <g class="mute" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M15.5 9.5l5 5M20.5 9.5l-5 5"/></g>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" id="map">
+    <div class="hero-stage">
+      <div class="map-wrap" id="mapWrap">
+      <svg class="trade-map" viewBox="0 0 1200 620" role="img" aria-labelledby="mapTitle">
+        <title id="mapTitle">무역 맵: 공장, 무역사무소, 세관, 은행, 창고, 협상하는 바이어와 셀러, 항만 크레인, 부두를 떠나는 컨테이너선, 화물기, 등대가 있는 마을</title>
+        <defs>
+          <linearGradient id="skyG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#CFEFFB"/><stop offset="1" stop-color="#EEF9F1"/>
+          </linearGradient>
+          <linearGradient id="seaG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#9ADBF2"/><stop offset="1" stop-color="#5DB7E0"/>
+          </linearGradient>
+          <symbol id="pine" viewBox="0 0 30 50"><rect x="13" y="36" width="4" height="12" rx="1" fill="#8A5A33"/><path d="M15 2 L27 21 L20 21 L28 37 L2 37 L10 21 L3 21 Z" fill="#4E9F45" stroke="#2F5B2A" stroke-width="1.6" stroke-linejoin="round"/><path d="M15 6 L21 17" stroke="#7CC36B" stroke-width="2" stroke-linecap="round"/></symbol>
+          <symbol id="tree" viewBox="0 0 40 50"><rect x="18" y="30" width="4" height="18" rx="1" fill="#8A5A33"/><circle cx="20" cy="20" r="16" fill="#79C062" stroke="#3D6B33" stroke-width="1.6"/><circle cx="14" cy="15" r="5" fill="#A2D886"/></symbol>
+          <symbol id="person" viewBox="0 0 24 44"><path d="M4 31 Q4 17 12 17 Q20 17 20 31 Z" fill="currentColor" stroke="#3A3A33" stroke-width="1.5"/><rect x="7" y="30" width="4" height="12" rx="2" fill="#4A5568"/><rect x="13" y="30" width="4" height="12" rx="2" fill="#4A5568"/><circle cx="12" cy="9.5" r="7" fill="#FFDDBF" stroke="#3A3A33" stroke-width="1.5"/><path d="M5 9 Q5 2 12 2 Q19 2 19 9 Q15 5.5 12 6.5 Q8 5.5 5 9Z" fill="#3A3A33"/></symbol>
+          <symbol id="box" viewBox="0 0 40 18"><rect x="1" y="1" width="38" height="16" rx="1.5" fill="currentColor" stroke="#3A3A33" stroke-width="1.5"/><path d="M8 4v10M14 4v10M20 4v10M26 4v10M32 4v10" stroke="rgba(0,0,0,.2)" stroke-width="1.6"/></symbol>
+          <symbol id="bird" viewBox="0 0 24 16"><path d="M2 8 Q7 1 12 8 Q17 1 22 8 Q17 6 12 12 Q7 6 2 8Z" fill="#F08A3C" stroke="#9A4A17" stroke-width="1"/></symbol>
+          <symbol id="cloud" viewBox="0 0 120 50"><path d="M18 42 Q2 42 6 30 Q8 20 22 22 Q26 6 46 10 Q58 0 74 10 Q96 6 98 24 Q116 24 114 36 Q112 44 98 42 Z" fill="#FFFFFF" stroke="#BFE3F2" stroke-width="2"/></symbol>
+        </defs>
+
+        <!-- sky & sea -->
+        <rect width="1200" height="620" fill="url(#skyG)"/>
+        <g class="clouds">
+          <use href="#cloud" x="60" y="18" width="130" height="54"/>
+          <use href="#cloud" x="610" y="10" width="110" height="46"/>
+          <use href="#cloud" x="1020" y="34" width="140" height="58"/>
+          <use href="#cloud" x="330" y="34" width="80" height="34"/>
+        </g>
+        <path d="M720 150 Q860 128 1000 140 Q1100 148 1200 132 L1200 620 L720 620 Z" fill="url(#seaG)"/>
+        <g stroke="#FFFFFF" stroke-width="2.4" fill="none" stroke-linecap="round" opacity=".75">
+          <path d="M880 210 q10 -6 20 0 q10 6 20 0"/><path d="M1040 240 q10 -6 20 0 q10 6 20 0"/>
+          <path d="M960 330 q10 -6 20 0 q10 6 20 0"/><path d="M1130 430 q10 -6 20 0 q10 6 20 0"/>
+          <path d="M900 560 q10 -6 20 0 q10 6 20 0"/><path d="M1060 540 q10 -6 20 0 q10 6 20 0"/>
+          <path d="M1000 190 q8 -5 16 0"/>
+        </g>
+
+        <!-- mountains -->
+        <path d="M-20 180 L70 72 L120 120 L170 84 L250 150 L330 180 Z" fill="#8CC57A" stroke="#3D6B33" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M70 72 L88 98 L72 92 L58 104 Z M170 84 L184 104 L170 98 L158 108 Z" fill="#FFFFFF" opacity=".85"/>
+        <path d="M380 175 L470 92 L520 130 L590 70 L680 150 L760 182 Z" fill="#79B866" stroke="#3D6B33" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M590 70 L610 96 L592 90 L576 102 Z" fill="#FFFFFF" opacity=".85"/>
+
+        <!-- land -->
+        <path d="M0 168 Q140 140 280 160 Q430 132 580 152 Q700 162 772 184 C812 242 782 300 804 352 L806 470 C772 520 800 560 768 620 L0 620 Z" fill="#B4DE92" stroke="#5E9A49" stroke-width="2.4"/>
+        <path d="M30 300 Q120 270 220 300 Q260 340 180 360 Q80 370 30 300Z" fill="#A2D47F"/>
+        <path d="M430 480 Q520 450 600 488 Q620 540 520 552 Q440 548 430 480Z" fill="#A2D47F"/>
+        <path d="M360 120 Q400 100 440 120" stroke="#5E9A49" stroke-width="0" fill="none"/>
+
+        <!-- roads -->
+        <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path id="road1" d="M150 258 C160 330 190 380 210 440 M240 528 C340 520 460 530 590 470 M350 302 C420 330 520 320 640 290 C680 300 690 330 700 360" stroke="#EFE3C0" stroke-width="18"/>
+          <path d="M150 258 C160 330 190 380 210 440 M240 528 C340 520 460 530 590 470 M350 302 C420 330 520 320 640 290 C680 300 690 330 700 360" stroke="#FFFFFF" stroke-width="2" stroke-dasharray="8 10"/>
+        </g>
+
+        <!-- port pier -->
+        <path d="M586 372 Q600 356 640 356 L860 352 L860 472 L640 474 Q596 474 586 452 Z" fill="#DCD6C8" stroke="#6E6758" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M860 352 L860 472" stroke="#4E4A42" stroke-width="5"/>
+        <g fill="#F2B134" stroke="#3A3A33" stroke-width="1.2"><circle cx="852" cy="368" r="3.5"/><circle cx="852" cy="400" r="3.5"/><circle cx="852" cy="432" r="3.5"/><circle cx="852" cy="462" r="3.5"/></g>
+
+        <!-- trees (back) -->
+        <g>
+          <use href="#pine" x="18" y="150" width="30" height="50"/><use href="#pine" x="44" y="168" width="26" height="44"/>
+          <use href="#pine" x="238" y="140" width="28" height="48"/><use href="#tree" x="254" y="176" width="36" height="46"/>
+          <use href="#pine" x="434" y="178" width="28" height="46"/><use href="#tree" x="448" y="214" width="36" height="46"/>
+          <use href="#pine" x="560" y="140" width="26" height="44"/><use href="#tree" x="700" y="176" width="36" height="46"/>
+          <use href="#pine" x="728" y="200" width="28" height="46"/><use href="#pine" x="740" y="246" width="26" height="44"/>
+          <use href="#tree" x="24" y="250" width="40" height="50"/><use href="#pine" x="70" y="270" width="28" height="46"/>
+          <use href="#tree" x="236" y="318" width="40" height="50"/><use href="#pine" x="270" y="332" width="28" height="46"/>
+          <use href="#pine" x="96" y="320" width="26" height="44"/>
+        </g>
+
+        <!-- FACTORY -->
+        <g class="spot-g" id="g-factory" data-spot="factory">
+          <rect x="178" y="112" width="14" height="66" fill="#E2574C" stroke="#3A3A33" stroke-width="2"/>
+          <rect x="178" y="126" width="14" height="8" fill="#FFFFFF"/>
+          <rect x="198" y="124" width="12" height="54" fill="#E2574C" stroke="#3A3A33" stroke-width="2"/>
+          <rect x="198" y="136" width="12" height="7" fill="#FFFFFF"/>
+          <g class="smoke" fill="#FFFFFF" stroke="#C9D6DC" stroke-width="1.5">
+            <circle cx="186" cy="100" r="8"/><circle cx="196" cy="86" r="10"/><circle cx="212" cy="74" r="12"/>
+          </g>
+          <path d="M72 252 L72 178 L94 158 L94 178 L116 158 L116 178 L138 158 L138 178 L160 158 L160 178 L222 178 L222 252 Z" fill="#EFE6D6" stroke="#3A3A33" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M72 178 L94 158 L94 178 L116 158 L116 178 L138 158 L138 178 L160 158 L160 178" fill="none" stroke="#7FA9C9" stroke-width="4"/>
+          <g fill="#BFE0F2" stroke="#3A3A33" stroke-width="1.5"><rect x="84" y="196" width="22" height="18" rx="2"/><rect x="114" y="196" width="22" height="18" rx="2"/><rect x="144" y="196" width="22" height="18" rx="2"/></g>
+          <rect x="180" y="214" width="30" height="38" fill="#7A8C99" stroke="#3A3A33" stroke-width="2"/>
+          <rect x="84" y="226" width="78" height="16" rx="3" fill="#4BA36B" stroke="#3A3A33" stroke-width="1.5"/>
+          <text x="123" y="238" class="mtext" text-anchor="middle">배터리 소재</text>
+          <use href="#person" x="226" y="226" width="16" height="30" style="color:#F2B134"/>
+        </g>
+
+        <!-- BANK -->
+        <g class="spot-g" id="g-bank" data-spot="bank">
+          <path d="M466 128 L516 104 L566 128 Z" fill="#F4EEDD" stroke="#3A3A33" stroke-width="2" stroke-linejoin="round"/>
+          <rect x="468" y="128" width="96" height="8" fill="#E6DCC3" stroke="#3A3A33" stroke-width="2"/>
+          <g fill="#FFFFFF" stroke="#3A3A33" stroke-width="1.6"><rect x="476" y="137" width="9" height="40"/><rect x="494" y="137" width="9" height="40"/><rect x="529" y="137" width="9" height="40"/><rect x="547" y="137" width="9" height="40"/></g>
+          <rect x="507" y="148" width="18" height="29" rx="2" fill="#7A5C3E" stroke="#3A3A33" stroke-width="1.6"/>
+          <rect x="462" y="177" width="108" height="10" fill="#D8CEB4" stroke="#3A3A33" stroke-width="2"/>
+          <text x="516" y="124" class="mtext" text-anchor="middle">₩ $</text>
+        </g>
+
+        <!-- OFFICE -->
+        <g class="spot-g" id="g-office" data-spot="office">
+          <path d="M280 210 L350 186 L420 210 Z" fill="#E98A5B" stroke="#3A3A33" stroke-width="2" stroke-linejoin="round"/>
+          <rect x="286" y="210" width="128" height="94" fill="#F7E9C9" stroke="#3A3A33" stroke-width="2"/>
+          <rect x="298" y="224" width="104" height="58" rx="3" fill="#FFF8DC" stroke="#3A3A33" stroke-width="2"/>
+          <!-- inside: worker writing documents -->
+          <rect x="338" y="230" width="22" height="14" rx="2" fill="#7FA9C9" stroke="#3A3A33" stroke-width="1.4"/>
+          <use href="#person" x="312" y="236" width="22" height="40" style="color:#3F86C8"/>
+          <path d="M328 262 L346 258" stroke="#3A3A33" stroke-width="2" stroke-linecap="round"/>
+          <rect x="304" y="266" width="94" height="6" fill="#B07A4A" stroke="#3A3A33" stroke-width="1.4"/>
+          <g stroke="#3A3A33" stroke-width="1.2"><rect x="344" y="254" width="16" height="12" fill="#FFFFFF" transform="rotate(-8 352 260)"/><rect x="364" y="248" width="14" height="18" fill="#FFFFFF"/><rect x="380" y="252" width="14" height="14" fill="#FFF2B3"/></g>
+          <path d="M367 253h8M367 257h8M367 261h6" stroke="#9AA3A8" stroke-width="1.2"/>
+          <path d="M348 262 l6 -2" stroke="#E2574C" stroke-width="2" stroke-linecap="round"/>
+          <rect x="300" y="288" width="100" height="12" rx="2" fill="#3D8B37"/>
+          <text x="350" y="297.5" class="mtext light" text-anchor="middle">TRADE OFFICE</text>
+        </g>
+
+        <!-- CUSTOMS -->
+        <g class="spot-g" id="g-customs" data-spot="customs">
+          <rect x="694" y="166" width="3" height="70" fill="#6E6758"/>
+          <path d="M697 168 L728 176 L697 186 Z" fill="#E2574C" stroke="#3A3A33" stroke-width="1.4" stroke-linejoin="round"/>
+          <path d="M582 206 L637 184 L692 206 Z" fill="#3F86C8" stroke="#3A3A33" stroke-width="2" stroke-linejoin="round"/>
+          <rect x="588" y="206" width="98" height="72" fill="#E4EFF8" stroke="#3A3A33" stroke-width="2"/>
+          <rect x="598" y="212" width="78" height="14" rx="2" fill="#2F5D8A"/>
+          <text x="637" y="223" class="mtext light" text-anchor="middle">세관 CUSTOMS</text>
+          <g fill="#BFE0F2" stroke="#3A3A33" stroke-width="1.4"><rect x="598" y="234" width="18" height="16" rx="2"/><rect x="658" y="234" width="18" height="16" rx="2"/></g>
+          <rect x="626" y="240" width="22" height="38" fill="#7A8C99" stroke="#3A3A33" stroke-width="1.6"/>
+          <!-- inspector checking a box -->
+          <use href="#box" x="540" y="270" width="40" height="18" style="color:#C78B4A"/>
+          <use href="#person" x="560" y="246" width="20" height="38" style="color:#2F5D8A"/>
+          <circle cx="552" cy="264" r="6" fill="#DFF3FF" stroke="#3A3A33" stroke-width="2"/>
+          <path d="M556 268 L561 273" stroke="#3A3A33" stroke-width="2.4" stroke-linecap="round"/>
+        </g>
+
+        <!-- CRANES + containers -->
+        <g class="spot-g" id="g-crane" data-spot="crane">
+          <g>
+            <use href="#box" x="604" y="436" width="44" height="20" style="color:#E2574C"/>
+            <use href="#box" x="650" y="436" width="44" height="20" style="color:#3F86C8"/>
+            <use href="#box" x="604" y="416" width="44" height="20" style="color:#F2B134"/>
+            <use href="#box" x="650" y="416" width="44" height="20" style="color:#4BA36B"/>
+            <use href="#box" x="626" y="396" width="44" height="20" style="color:#8C6BC8"/>
+            <use href="#box" x="604" y="376" width="44" height="20" style="color:#3F86C8"/>
+          </g>
+          <g stroke="#3A3A33" stroke-width="2" stroke-linejoin="round">
+            <rect x="712" y="330" width="8" height="132" fill="#F2B134"/>
+            <rect x="750" y="330" width="8" height="132" fill="#F2B134"/>
+            <rect x="694" y="320" width="196" height="12" fill="#F2B134"/>
+            <path d="M716 340 L754 380 M754 340 L716 380 M716 390 L754 430 M754 390 L716 430" stroke="#C98A12" stroke-width="2.4"/>
+            <rect x="760" y="332" width="20" height="16" fill="#FFFFFF"/>
+            <path d="M846 332 L846 372" stroke="#3A3A33" stroke-width="1.6"/>
+          </g>
+          <use href="#box" x="826" y="372" width="40" height="18" style="color:#E2574C"/>
+          <use href="#person" x="676" y="440" width="16" height="30" style="color:#F08A3C"/>
+        </g>
+
+        <!-- NEGOTIATION -->
+        <g class="spot-g" id="g-deal" data-spot="deal">
+          <rect x="455" y="410" width="4" height="46" fill="#6E6758"/>
+          <path d="M412 418 Q457 384 502 418 Z" fill="#F08A3C" stroke="#3A3A33" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M427 418 Q442 400 457 396 Q472 400 487 418" fill="none" stroke="#FFFFFF" stroke-width="2.4"/>
+          <use href="#person" x="414" y="420" width="26" height="48" style="color:#4BA36B"/>
+          <use href="#person" x="476" y="420" width="26" height="48" style="color:#8C6BC8"/>
+          <ellipse cx="457" cy="456" rx="34" ry="8" fill="#FFFFFF" stroke="#3A3A33" stroke-width="2"/>
+          <rect x="446" y="449" width="14" height="9" fill="#FFF2B3" stroke="#3A3A33" stroke-width="1.2"/>
+          <path d="M434 444 Q446 438 457 442 Q468 438 480 444" fill="none" stroke="#FFDDBF" stroke-width="5" stroke-linecap="round"/>
+          <path d="M434 444 Q446 438 457 442 Q468 438 480 444" fill="none" stroke="#3A3A33" stroke-width="1" stroke-linecap="round"/>
+          <g class="bubble">
+            <path d="M360 404 h44 a8 8 0 0 1 8 8 v12 a8 8 0 0 1 -8 8 h-26 l-8 8 v-8 h-10 a8 8 0 0 1 -8 -8 v-12 a8 8 0 0 1 8 -8z" fill="#FFFFFF" stroke="#3A3A33" stroke-width="1.6"/>
+            <text x="382" y="423" class="mtext" text-anchor="middle">$9.8?</text>
+          </g>
+          <g class="bubble b2">
+            <path d="M512 404 h36 a8 8 0 0 1 8 8 v12 a8 8 0 0 1 -8 8 h-10 v8 l-8 -8 h-18 a8 8 0 0 1 -8 -8 v-12 a8 8 0 0 1 8 -8z" fill="#FFFFFF" stroke="#3A3A33" stroke-width="1.6"/>
+            <text x="530" y="423" class="mtext" text-anchor="middle">OK!</text>
+          </g>
+        </g>
+
+        <!-- WAREHOUSE + TRUCK -->
+        <g class="spot-g" id="g-warehouse" data-spot="warehouse">
+          <path d="M136 456 Q200 420 264 456 L264 520 L136 520 Z" fill="#C9D9E6" stroke="#3A3A33" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M150 448 Q200 426 250 448" fill="none" stroke="#9BB4C7" stroke-width="3"/>
+          <rect x="168" y="472" width="64" height="48" fill="#8FA5B5" stroke="#3A3A33" stroke-width="2"/>
+          <path d="M168 482h64M168 492h64M168 502h64M168 512h64" stroke="#6E8494" stroke-width="1.6"/>
+          <use href="#box" x="236" y="502" width="30" height="16" style="color:#C78B4A"/>
+          <use href="#box" x="240" y="488" width="24" height="14" style="color:#E6B677"/>
+          <g class="truck">
+            <rect x="280" y="494" width="58" height="24" rx="2" fill="#3F86C8" stroke="#3A3A33" stroke-width="2"/>
+            <path d="M338 500 h14 l10 10 v8 h-24z" fill="#E2574C" stroke="#3A3A33" stroke-width="2" stroke-linejoin="round"/>
+            <rect x="342" y="503" width="9" height="7" fill="#BFE0F2"/>
+            <circle cx="296" cy="520" r="5.5" fill="#3A3A33"/><circle cx="350" cy="520" r="5.5" fill="#3A3A33"/>
+          </g>
+          <use href="#person" x="140" y="494" width="16" height="30" style="color:#E2574C"/>
+        </g>
+
+        <!-- SHIP leaving dock -->
+        <g class="spot-g" id="g-ship" data-spot="ship">
+          <g class="sail">
+            <path d="M838 488 q-14 -4 -28 0 M842 498 q-18 -5 -36 0" stroke="#FFFFFF" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+            <path d="M866 470 L1052 470 L1036 504 L882 504 Z" fill="#2F5D8A" stroke="#3A3A33" stroke-width="2.2" stroke-linejoin="round"/>
+            <path d="M876 492 L1044 492" stroke="#E2574C" stroke-width="5"/>
+            <use href="#box" x="884" y="452" width="38" height="18" style="color:#E2574C"/>
+            <use href="#box" x="922" y="452" width="38" height="18" style="color:#F2B134"/>
+            <use href="#box" x="960" y="452" width="38" height="18" style="color:#4BA36B"/>
+            <use href="#box" x="896" y="434" width="38" height="18" style="color:#3F86C8"/>
+            <use href="#box" x="934" y="434" width="38" height="18" style="color:#8C6BC8"/>
+            <rect x="1006" y="428" width="30" height="42" fill="#FFFFFF" stroke="#3A3A33" stroke-width="2"/>
+            <g fill="#7FA9C9"><rect x="1011" y="434" width="6" height="5"/><rect x="1021" y="434" width="6" height="5"/><rect x="1011" y="446" width="6" height="5"/><rect x="1021" y="446" width="6" height="5"/></g>
+            <rect x="1016" y="414" width="10" height="14" fill="#E2574C" stroke="#3A3A33" stroke-width="1.6"/>
+          </g>
+        </g>
+
+        <!-- LIGHTHOUSE -->
+        <g class="spot-g" id="g-lighthouse" data-spot="lighthouse">
+          <ellipse cx="1108" cy="356" rx="62" ry="16" fill="#EBDDAE" stroke="#8C7A4A" stroke-width="2"/>
+          <path d="M1062 350 Q1100 334 1150 350" fill="#9ED07F"/>
+          <path d="M1096 350 L1100 296 L1116 296 L1120 350 Z" fill="#FFFFFF" stroke="#3A3A33" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M1098 322 L1118 322 L1119 334 L1097 334 Z" fill="#E2574C"/>
+          <rect x="1097" y="284" width="22" height="12" fill="#F6C343" stroke="#3A3A33" stroke-width="2"/>
+          <path d="M1094 284 L1108 274 L1122 284 Z" fill="#E2574C" stroke="#3A3A33" stroke-width="2" stroke-linejoin="round"/>
+          <path class="beam" d="M1119 290 L1180 276 L1180 302 Z" fill="#FFF3B0" opacity=".7"/>
+          <use href="#pine" x="1132" y="318" width="20" height="34"/>
+        </g>
+
+        <!-- small fishing boat -->
+        <g transform="translate(1080 520)"><path d="M0 0 h50 l-8 12 h-34z" fill="#F08A3C" stroke="#3A3A33" stroke-width="2" stroke-linejoin="round"/><path d="M22 0 V-26 L40 -4 Z" fill="#FFFFFF" stroke="#3A3A33" stroke-width="1.6" stroke-linejoin="round"/></g>
+
+        <!-- CARGO PLANE -->
+        <g class="spot-g" id="g-plane" data-spot="plane">
+          <g class="fly">
+            <path d="M844 92 Q850 80 870 80 L934 80 Q950 80 954 90 Q950 100 934 100 L870 100 Q850 100 844 92Z" fill="#FFFFFF" stroke="#3A3A33" stroke-width="2"/>
+            <path d="M890 90 L872 116 L888 116 L912 90 Z" fill="#DCE6EE" stroke="#3A3A33" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M846 88 L836 66 L848 66 L862 82 Z" fill="#3F86C8" stroke="#3A3A33" stroke-width="2" stroke-linejoin="round"/>
+            <g fill="#7FA9C9"><circle cx="932" cy="88" r="2.6"/><circle cx="922" cy="88" r="2.6"/></g>
+            <text x="896" y="96" class="mtext" text-anchor="middle">CARGO</text>
+          </g>
+        </g>
+
+        <!-- people & front trees -->
+        <use href="#person" x="398" y="310" width="16" height="30" style="color:#E2574C"/>
+        <use href="#person" x="414" y="314" width="16" height="30" style="color:#F2B134"/>
+        <use href="#person" x="520" y="500" width="16" height="30" style="color:#3F86C8"/>
+        <use href="#tree" x="20" y="430" width="44" height="54"/><use href="#pine" x="60" y="452" width="30" height="50"/>
+        <use href="#pine" x="96" y="540" width="30" height="50"/><use href="#tree" x="380" y="540" width="40" height="50"/>
+        <use href="#pine" x="420" y="556" width="28" height="46"/><use href="#tree" x="640" y="520" width="40" height="50"/>
+        <use href="#pine" x="680" y="540" width="28" height="46"/><use href="#tree" x="540" y="380" width="34" height="44"/>
+        <use href="#pine" x="300" y="392" width="28" height="46"/><use href="#tree" x="330" y="420" width="36" height="46"/>
+
+        <!-- birds -->
+        <g class="birds">
+          <use href="#bird" x="300" y="64" width="26" height="18"/><use href="#bird" x="332" y="80" width="20" height="14"/>
+          <use href="#bird" x="760" y="96" width="24" height="16"/><use href="#bird" x="1000" y="210" width="22" height="15"/>
+        </g>
+
+        <!-- scalloped bottom edge -->
+        <path class="edge" d="M0 596 Q150 626 300 600 Q450 578 600 604 Q750 628 900 600 Q1050 576 1200 602 L1200 620 L0 620 Z"/>
+      </svg>
+
+      <div class="pins" id="pins" aria-label="무역 맵 장소"></div>
+      </div>
+      <div class="hero-head">
+        <div class="hero-title">
+          <p class="kicker"><span data-site="brand">Docklab</span> · 뉴스를 고르고, 만져보고, 맞혀보는</p>
+          <h1>뉴스 속 <em>무역</em> 공부방</h1>
+          <p class="hero-sub">지도에서 장소를 누르거나 뉴스를 골라, 무역 개념을 직접 움직여 보며 익혀요.</p>
+        </div>
+        <form class="search" id="searchForm" role="search">
+          <label class="sr" for="q">뉴스와 용어 검색</label>
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          <input id="q" type="search" placeholder="뉴스나 용어 검색 (예: 관세, 흑연, 운임)" autocomplete="off">
+          <button type="submit">검색</button>
+        </form>
+      </div>
+      <div class="map-cats" id="mapCats" role="group" aria-label="무역 맵 분야"></div>
+    </div>
+
+    <div class="inner map-below">
+      <div class="map-chips" id="mapChips" aria-label="무역 맵 장소 목록"></div>
+      <div class="map-info" id="mapInfo" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- LIVE NEWS -->
+  <section class="band news-band" id="live">
+    <div class="inner">
+      <div class="sec-head">
+        <p class="sec-kicker">지금 세계에서 들어온</p>
+        <h2>실시간 무역 뉴스</h2>
+        <p class="sec-sub">뉴스마다 관련 개념을 자동으로 붙여, 그 개념을 연습하는 학습실로 연결해요. 마음에 드는 뉴스는 내 기록에 담아 두세요.</p>
+      </div>
+      <div class="live-tools">
+        <div class="chips small" id="liveTopics" role="tablist" aria-label="실시간 뉴스 주제"></div>
+        <div class="seg" id="liveLang" role="group" aria-label="언어">
+          <button type="button" data-lang="all" class="on">전체</button><button type="button" data-lang="en">English</button><button type="button" data-lang="ko">한국어</button>
+        </div>
+      </div>
+      <div class="live-list" id="liveList" aria-live="polite"></div>
+      <p class="fine center" id="liveMeta"></p>
+    </div>
+  </section>
+
+  <!-- NEWS -->
+  <section class="band news-band2" id="news">
+    <div class="inner">
+      <div class="sec-head">
+        <p class="sec-kicker">관심 가는 뉴스 하나를 골라</p>
+        <h2>뉴스 학습실</h2>
+        <p class="sec-sub">뉴스마다 직접 움직여 보는 그래프, 퀴즈 3문제, 핵심 용어, 배운 점 기록이 들어 있어요.</p>
+      </div>
+      <div class="chips" id="topicChips" role="tablist" aria-label="주제"></div>
+      <p class="search-note" id="searchNote" hidden></p>
+      <div class="cards" id="newsCards"></div>
+    </div>
+  </section>
+
+  <!-- RECORD -->
+  <section class="band record-band" id="record">
+    <div class="inner">
+      <div class="sec-head">
+        <p class="sec-kicker">지금까지 공부한 것</p>
+        <h2>내 학습 기록</h2>
+      </div>
+      <div class="stats" id="stats"></div>
+      <div class="notes" id="notesList"></div>
+      <h3 class="sub-h">담아 둔 실시간 뉴스</h3>
+      <div class="saved" id="savedList"></div>
+      <div class="rec-actions">
+        <button class="btn" type="button" id="expMd">배운 점 내보내기 (.md)</button>
+        <button class="btn" type="button" id="expJson">백업 저장 (.json)</button>
+        <label class="btn" for="impJson">백업 불러오기</label>
+        <input type="file" id="impJson" accept=".json,application/json" hidden>
+        <span class="status" id="saveStatus"></span>
+      </div>
+      <p class="fine">기록은 이 브라우저에만 저장돼요. 다른 기기에서 이어 하려면 백업 저장 후 불러오기를 쓰세요.</p>
+    </div>
+  </section>
+
+  <!-- GLOSSARY -->
+  <section class="band glossary-band" id="glossary">
+    <div class="inner">
+      <div class="sec-head">
+        <p class="sec-kicker">한국어 · English · 中文</p>
+        <h2>무역 용어 사전</h2>
+      </div>
+      <div class="gl-tools">
+        <label class="sr" for="glQ">용어 검색</label>
+        <input id="glQ" type="search" placeholder="용어 검색 (한·영·중)">
+        <span class="status" id="glCount"></span>
+      </div>
+      <div class="gl-list" id="glList"></div>
+      <div class="gl-more-wrap"><button class="btn" type="button" id="glMore" hidden>모두 보기</button></div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="inner foot-in">
+    <div class="logo"><img class="app-icon" src="images/app-icon-128.png" alt="" width="30" height="30"><span><span data-site="brand">Docklab</span> · 뉴스 속 무역 공부방</span></div>
+    <p>실시간 뉴스는 NewsData.io에서 받아오며, 제목과 링크의 저작권은 각 언론사에 있어요. 학습실 뉴스 요약은 출처 기사를 바탕으로 쉽게 다시 쓴 것이고, 각 학습실에 원문 링크가 있어요. ‘학습용 가정’ 표시가 있는 그래프는 개념을 익히기 위한 단순 모델이며 실제 예측이 아니에요. 요소 수입 그래프는 관세청 수출입무역통계(2026-10-08 조회) 자료예요.</p>
+    <p class="fine">뉴스 기준일 2026-10-08 · 개인 학습용 프로젝트</p>
+  </div>
+</footer>
+
+<!-- LEARNING ROOM -->
+<div class="room" id="room" hidden>
+  <div class="room-backdrop" data-close></div>
+  <article class="room-panel" role="dialog" aria-modal="true" aria-labelledby="roomTitle" tabindex="-1">
+    <header class="room-head">
+      <div class="room-meta" id="roomMeta"></div>
+      <button class="icon-btn" type="button" data-close aria-label="학습실 닫기">✕</button>
+      <h2 id="roomTitle"></h2>
+      <p class="room-lead" id="roomLead"></p>
+      <nav class="room-steps" aria-label="학습 단계">
+        <a href="#r-news">뉴스</a><a href="#r-sim">만져보기</a><a href="#r-quiz">퀴즈</a><a href="#r-terms">용어</a><a href="#r-note">배운 점</a>
+      </nav>
+    </header>
+    <div class="room-body" id="roomBody">
+      <section class="r-sec" id="r-news"><h3><span class="n">1</span>뉴스 읽기</h3><div id="roomSummary"></div><p class="src" id="roomSources"></p></section>
+      <section class="r-sec" id="r-sim"><h3><span class="n">2</span>만져보기</h3><div id="roomSim"></div></section>
+      <section class="r-sec" id="r-quiz"><h3><span class="n">3</span>맞혀보기</h3><div id="roomQuiz"></div></section>
+      <section class="r-sec" id="r-terms"><h3><span class="n">4</span>핵심 용어</h3><div class="term-grid" id="roomTerms"></div></section>
+      <section class="r-sec" id="r-note"><h3><span class="n">5</span>배운 점 기록</h3>
+        <div class="field"><label for="noteLearn">오늘 새로 알게 된 것 한두 줄</label><textarea id="noteLearn" rows="3" placeholder="예: 관세는 수출 기업이 내는 게 아니라 수입국 정부가 걷고, 부담은 가격 협상에 따라 나뉜다."></textarea></div>
+        <div class="field"><label for="noteEn">영어 한 문장으로 (선택)</label><input id="noteEn" type="text" placeholder="e.g., A tariff is collected by the importing country, but who pays depends on prices."></div>
+        <div class="room-foot">
+          <button class="btn primary" type="button" id="doneBtn">학습 완료 표시</button>
+          <span class="status" id="noteStatus"></span>
+        </div>
+      </section>
+      <nav class="room-nav"><button class="btn" type="button" id="prevNews">← 이전 뉴스</button><button class="btn" type="button" id="nextNews">다음 뉴스 →</button></nav>
+    </div>
+  </article>
+</div>
+
+<div class="fallback" id="fallback" hidden>
+  <div class="fallback-in">
+    <p>파일 저장이 막혀 있어요. 아래 내용을 복사해서 보관하세요.</p>
+    <pre id="fallbackText"></pre>
+    <div class="rec-actions"><button class="btn" type="button" id="fbCopy">복사</button><button class="btn" type="button" id="fbClose">닫기</button></div>
+  </div>
+</div>
+
+<script src="js/sound.js"></script>
+<script src="js/data.js"></script>
+<script src="js/sims.js"></script>
+<script src="js/app.js"></script>
+<script src="js/guide.js"></script>
+<script type="module" src="js/scene3d.js"></script>
+</body>
+</html>
